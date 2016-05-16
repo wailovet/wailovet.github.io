@@ -66,9 +66,7 @@
                 core(title, page);
             });
 
-            $("#send").click(function(){
-                location.href = "q.html?s="+$("#title").val();
-            });
+
         });
 
 
@@ -78,17 +76,17 @@
 <body style="display:none;">
 <div class="container-fluid">
 
-    <div class="row" style="background: #eee;padding: 10px;padding-left: 0px;padding-top: 20px;" id="header">
+    <form class="row" style="background: #eee;padding: 10px;padding-left: 0px;padding-top: 20px;" id="header" action="q.html">
         <div class="col-md-1" style="padding: 0;"><a href="./index.html"><img src="./res/img/logo2.png" alt="" style="width: 100%;"></a></div>
         <div class="col-md-5">
-            <div class="form-group"><input type="text" v-model="title" class="form-control" id="title"></div>
+            <div class="form-group"><input type="text" v-model="title" class="form-control" id="title" name="s"></div>
         </div>
         <div class="col-md-1">
             <div class="form-group">
-                <button type="button" class="btn btn-info" style="width: 100%;" id="send">O</button>
+                <button type="submit" class="btn btn-info" style="width: 100%;" id="send">O</button>
             </div>
         </div>
-    </div>
+    </form>
     <div id="main" class="row" style="margin-top: 40px;">
 
         <div class="col-md-1">
