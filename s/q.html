@@ -65,7 +65,7 @@
                 page++;
                 core(title, page);
             });
-            $("body").scroll(function () {
+            $(window).scroll(function () {
 
                 var viewH = $(this).height(); //可见高度
                 var contentH = $(this).get(0).scrollHeight;//内容高度
