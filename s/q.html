@@ -40,6 +40,7 @@
                 }
                 $('body').fadeIn();
                 $("#load_data").fadeIn();
+                is_loding = false;
             })
 
         }
@@ -48,6 +49,7 @@
         if (!page || page < 1) {
             page = 1;
         }
+        var is_loding = false;
         $(function () {
             var title = get('s');
 
@@ -61,20 +63,27 @@
 
             core(title, page);
             $("#load_data").click(function () {
+                is_loding = true;
                 $(this).fadeOut();
                 page++;
                 core(title, page);
             });
             $(window).scroll(function () {
-
-                var viewH = $('body').height(); //可见高度
+                if (is_loding)return;
+                var viewH = $(window).height(); //可见高度
                 var contentH = $('body').get(0).scrollHeight;//内容高度
                 var scrollTop = $('body').scrollTop();//滚动高度
                 //if(contentH - viewH - scrollTop <= 100) { //到达底部100px时,加载新内容
-                console.log(scrollTop / (contentH - viewH));
-                if (scrollTop / (contentH - viewH) >= 0.95) { //到达底部100px时,加载新内容
+                console.log(scrollTop - contentH);
+                console.log(viewH);
+                if (- (viewH + (scrollTop - contentH)) <= 0.3) { //到达底部100px时,加载新内容
+
+                    console.log("加载");
                     // 这里加载数据..
 //                    alert("s");
+                    page++;
+                    core(title, page);
+
                 }
             });
 
@@ -128,7 +137,7 @@
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-        <button type="button" class="btn btn-default" style="width: 100%" id="load_data">加载更多</button>
+        <!--<button type="button" class="btn btn-default" style="width: 100%" id="load_data">加载更多</button>-->
     </div>
     <div class="col-md-4">
     </div>
