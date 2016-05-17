@@ -35,7 +35,7 @@
                             datas: datas
                         }
                     });
-                }else{
+                } else {
                     v.$data.datas = datas;
                 }
                 $('body').fadeIn();
@@ -65,6 +65,17 @@
                 page++;
                 core(title, page);
             });
+            $("body").scroll(function () {
+
+                var viewH = $(this).height(); //可见高度
+                var contentH = $(this).get(0).scrollHeight;//内容高度
+                var scrollTop = $(this).scrollTop();//滚动高度
+                //if(contentH - viewH - scrollTop <= 100) { //到达底部100px时,加载新内容
+                if (scrollTop / (contentH - viewH) >= 0.95) { //到达底部100px时,加载新内容
+                    // 这里加载数据..
+                    alert("s");
+                }
+            });
 
 
         });
@@ -76,8 +87,10 @@
 <body style="display:none;">
 <div class="container-fluid">
 
-    <form class="row" style="background: #eee;padding: 10px;padding-left: 0px;padding-top: 20px;" id="header" action="q.html">
-        <div class="col-md-1" style="padding: 0;"><a href="./index.html"><img src="./res/img/logo2.png" alt="" style="width: 100%;"></a></div>
+    <form class="row" style="background: #eee;padding: 10px;padding-left: 0px;padding-top: 20px;" id="header"
+          action="q.html">
+        <div class="col-md-1" style="padding: 0;"><a href="./index.html"><img src="./res/img/logo2.png" alt=""
+                                                                              style="width: 100%;"></a></div>
         <div class="col-md-5">
             <div class="form-group"><input type="text" v-model="title" class="form-control" id="title" name="s"></div>
         </div>
