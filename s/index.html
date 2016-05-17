@@ -12,25 +12,31 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="./res/js/main.js"></script>
+    <script>
+        sendChange = function(){
+            suggest($('[name=s]'));
+        };
+    </script>
     <title>聚合搜索</title>
 </head>
 <body>
 <form class="container-fluid" style="margin-top: 17%" action="q.html">
-    <div class="row" >
+    <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="form-group" style="text-align: center;">
                 <img src="./res/img/logo.png" alt="">
             </div>
         </div>
     </div>
-    <div class="row" >
+    <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="form-group">
-                <input type="text" style="height: 38px;width: 100%" class="form-control" id="content" name="s">
+                <input type="text" style="height: 38px;width: 100%" class="form-control" id="content" name="s" autocomplete="off" oninput="sendChange()">
             </div>
         </div>
     </div>
-    <div class="row" >
+    <div class="row">
         <div class="col-md-2 col-md-offset-5">
             <div class="form-group">
                 <button type="submit" class="btn btn-info" style="width: 100%;" id="send">搜索一下</button>
