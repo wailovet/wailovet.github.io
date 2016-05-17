@@ -45,7 +45,7 @@
         }
 
         var page = parseInt(get('p'));
-        if (page < 1) {
+        if (!page || page < 1) {
             page = 1;
         }
         $(function () {
