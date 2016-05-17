@@ -76,7 +76,7 @@
                 //if(contentH - viewH - scrollTop <= 100) { //到达底部100px时,加载新内容
                 console.log(scrollTop - contentH);
                 console.log(viewH);
-                if (- (viewH + (scrollTop - contentH)) <= 0.3) { //到达底部100px时,加载新内容
+                if (-(viewH + (scrollTop - contentH)) <= 0.3) { //到达底部100px时,加载新内容
 
                     console.log("加载");
                     // 这里加载数据..
@@ -99,9 +99,14 @@
 
     <form class="row" style="background: #eee;padding: 10px;padding-left: 0px;padding-top: 20px;" id="header"
           action="q.html">
-        <div class="col-md-1" style="padding: 0;"><a href="./index.html"><img src="./res/img/logo2.png" alt=""
-                                                                              style="width: 100%;"></a></div>
-        <div class="col-md-5">
+        <div class="col-md-2" style="padding: 0;">
+            <div class="form-group">
+                <a href="./index.html">
+                    <!--<img src="./res/img/logo2.png" alt="" style="width: 100%;height: 30px;">-->
+                </a>
+            </div>
+        </div>
+        <div class="col-md-7">
             <div class="form-group"><input type="text" v-model="title" class="form-control" id="title" name="s"></div>
         </div>
         <div class="col-md-1">
@@ -112,9 +117,9 @@
     </form>
     <div id="main" class="row" style="margin-top: 40px;">
 
-        <div class="col-md-1">
+        <div class="col-md-2">
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
 
 
             <ul class="list-unstyled">
