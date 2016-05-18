@@ -13,6 +13,7 @@
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="http://cdn.bootcss.com/vue/1.0.24/vue.min.js"></script>
+    <script src="./res/js/main.js"></script>
 
 
     <script>
@@ -27,20 +28,26 @@
         var datas = [];
         function core(str, page) {
             $.get("http://w.wailovet.xyz:4889/?s=" + str + "&p=" + page, function (data) {
-                datas = datas.concat(data.data);
-                if (!v) {
-                    v = new Vue({
-                        el: '#main',
-                        data: {
-                            datas: datas
-                        }
-                    });
-                } else {
-                    v.$data.datas = datas;
+                if(data.errno == 0){
+
+                    datas = datas.concat(data.data);
+                    if (!v) {
+                        v = new Vue({
+                            el: '#main',
+                            data: {
+                                datas: datas
+                            }
+                        });
+                    } else {
+                        v.$data.datas = datas;
+                    }
+                    $('body').fadeIn();
+                    $("#load_data").fadeIn();
+                    is_loding = false;
+                }else{
+                    alert(data.msg);
+                    location.href = "index.html";
                 }
-                $('body').fadeIn();
-                $("#load_data").fadeIn();
-                is_loding = false;
             })
 
         }
@@ -91,6 +98,9 @@
         });
 
 
+        sendChange = function(){
+            suggest($('[name=s]'));
+        };
     </script>
     <title>聚合搜索</title>
 </head>
@@ -107,7 +117,7 @@
             </div>
         </div>
         <div class="col-md-7">
-            <div class="form-group"><input type="text" v-model="title" class="form-control" id="title" name="s"></div>
+            <div class="form-group"><input type="text" v-model="title" class="form-control" id="title" name="s"  autocomplete="off" oninput="sendChange()"></div>
         </div>
         <div class="col-md-1">
             <div class="form-group">
