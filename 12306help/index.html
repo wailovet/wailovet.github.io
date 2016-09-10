@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link href="mui.min.css" rel="stylesheet" />
+
+    <style>
+        /*点击变蓝色高亮*/
+        .mui-table-view-cell .mui-active{
+            background-color: #0062CC;
+        }
+    </style>
+</head>
+
+<body >
+<div id="vue">
+
+    <form class="mui-input-group">
+        <div class="mui-input-row">
+            <label>筛选</label>
+            <input type="text" class="mui-input" placeholder="请输入内容" v-model="sea">
+        </div>
+    </form>
+    <div class="mui-content">
+        <br>
+        <ul class="mui-table-view">
+            <li class="mui-table-view-cell" v-for="item in list"  v-on:click="click(item)">{{item[1]}}</li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="mui.min.js"></script>
+<script src="http://cdn.bootcss.com/vue/2.0.0-rc.5/vue.min.js"></script>
+<script src="https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8965"></script>
+<script>
+    var tmp = station_names.split("@");
+
+    var data = [];
+    for (var i=0;i<tmp.length;i++){
+        if(tmp[i] != ""){
+            data.push(tmp[i].split("|"));
+        }
+    }
+    console.log(station_names.split("@"));
+    var vue = new Vue({
+        el: '#vue',
+        data: {
+            list: data,
+            sea:""
+        },
+        methods:{
+            "click":function(item){
+                alert(item[2])
+            }
+
+        },
+        watch:{
+            sea:function(){
+                var tmp = data;
+                var tmp_ = [];
+                for (var i=0;i<tmp.length;i++){
+                    if(tmp[i][1].indexOf(this.sea) >=0 ||tmp[i][3].indexOf(this.sea) >=0||tmp[i][4].indexOf(this.sea) >=0){
+                        tmp_.push(tmp[i]);
+                    }
+                }
+                this.list = tmp_;
+
+            }
+        }
+    })
+//    vue.list = data;
+</script>
+</html>
