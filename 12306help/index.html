@@ -13,6 +13,11 @@
             background-color: #0062CC;
         }
     </style>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 
 <body >
@@ -20,7 +25,7 @@
 
     <form class="mui-input-group">
         <div class="mui-input-row">
-            <input type="text" class="mui-input" placeholder="简拼/全拼/汉字" v-model="sea">
+            <input type="text" class="mui-input" autofocus="autofocus" placeholder="简拼/全拼/汉字" v-model="sea" id="sea">
         </div>
     </form>
     <div class="mui-content" v-cloak>
@@ -34,13 +39,8 @@
 <script src="mui.min.js"></script>
 <script src="http://cdn.bootcss.com/vue/2.0.0-rc.5/vue.min.js"></script>
 <script src="https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8965"></script>
-<style>
-    [v-cloak] {
-        display: none;
-    }
-</style>
+
 <script>
-    $("input")[0].focus();
     var tmp = station_names.split("@");
 
     var data = [];
@@ -76,6 +76,8 @@
                 }else{
                     this.list = [];
                 }
+
+                document.getElementById("sea").focus();
 
 
             }
