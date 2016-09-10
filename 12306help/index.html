@@ -16,14 +16,14 @@
 </head>
 
 <body >
-<div id="vue">
+<div id="vue" >
 
     <form class="mui-input-group">
         <div class="mui-input-row">
             <input type="text" class="mui-input" placeholder="简拼/全拼/汉字" v-model="sea">
         </div>
     </form>
-    <div class="mui-content">
+    <div class="mui-content" v-cloak>
         <br>
         <ul class="mui-table-view">
             <li class="mui-table-view-cell" v-for="item in list"  v-on:click="click(item)">{{item[1]}}</li>
@@ -34,6 +34,11 @@
 <script src="mui.min.js"></script>
 <script src="http://cdn.bootcss.com/vue/2.0.0-rc.5/vue.min.js"></script>
 <script src="https://kyfw.12306.cn/otn/resources/js/framework/station_name.js?station_version=1.8965"></script>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+</style>
 <script>
     $("input")[0].focus();
     var tmp = station_names.split("@");
