@@ -20,8 +20,7 @@
 
     <form class="mui-input-group">
         <div class="mui-input-row">
-            <label>筛选</label>
-            <input type="text" class="mui-input" placeholder="请输入内容" v-model="sea">
+            <input type="text" class="mui-input" placeholder="简拼/全拼/汉字" v-model="sea">
         </div>
     </form>
     <div class="mui-content">
@@ -48,7 +47,7 @@
     var vue = new Vue({
         el: '#vue',
         data: {
-            list: data,
+            list: [],
             sea:""
         },
         methods:{
@@ -59,14 +58,19 @@
         },
         watch:{
             sea:function(){
-                var tmp = data;
-                var tmp_ = [];
-                for (var i=0;i<tmp.length;i++){
-                    if(tmp[i][1].indexOf(this.sea) >=0 ||tmp[i][3].indexOf(this.sea) >=0||tmp[i][4].indexOf(this.sea) >=0){
-                        tmp_.push(tmp[i]);
+                if(this.sea != ""){
+                    var tmp = data;
+                    var tmp_ = [];
+                    for (var i=0;i<tmp.length;i++){
+                        if(tmp[i][1].indexOf(this.sea) >=0 ||tmp[i][3].indexOf(this.sea) >=0||tmp[i][4].indexOf(this.sea) >=0){
+                            tmp_.push(tmp[i]);
+                        }
                     }
+                    this.list = tmp_;
+                }else{
+                    this.list = [];
                 }
-                this.list = tmp_;
+
 
             }
         }
